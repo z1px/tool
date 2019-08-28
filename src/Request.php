@@ -151,7 +151,7 @@ class Request
                 $options[CURLOPT_POST] = true; //post提交方式
                 // 伪造来源referer
                 if(!isset($options[CURLOPT_REFERER])){
-                    $options[CURLOPT_REFERER] = $_SERVER['HTTP_REFERER'] ?? ($_SERVER['REQUEST_SCHEME'] ?? (((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'])) ? 'https' : 'http')) . '://'. $_SERVER['HTTP_HOST'];
+                    $options[CURLOPT_REFERER] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : (isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : (((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'])) ? 'https' : 'http')) . '://'. $_SERVER['HTTP_HOST'];
                 }
                 if(!empty($params) && is_array($params)) $params = http_build_query($params);
                 if(!empty($params)){
@@ -173,7 +173,7 @@ class Request
         }
         $setopt[CURLOPT_URL] = $url; //抓取指定网页
         $setopt[CURLOPT_POST] = true; //是否POST提交方式
-        $setopt[CURLOPT_USERAGENT] = $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'; //模拟浏览器代理
+        $setopt[CURLOPT_USERAGENT] = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'; //模拟浏览器代理
         $setopt[CURLOPT_RETURNTRANSFER] = true; //设置获取的信息以文件流的形式返回，而不是直接输出
         $setopt[CURLOPT_NOBODY] = false; //不显示body
         $setopt[CURLOPT_HEADER] = false; //设置头文件的信息作为数据流输出
@@ -223,7 +223,7 @@ class Request
         if (0 !== $errno) {
             return [
                 'code' => 0,
-                'msg'   => self::$list_errno[$errno] ?? $errno,
+                'msg'   => isset(self::$list_errno[$errno]) ? self::$list_errno[$errno] : $errno,
                 'data'  => $response,
             ];
         }
