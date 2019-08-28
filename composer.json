@@ -1,6 +1,6 @@
 {
     "name": "z1px/tool",
-    "type": "composer-plugin",
+    "type": "library",
     "description": "php tool",
     "keywords": ["tool"],
     "homepage": "https://github.com/z1px/tool",
@@ -14,12 +14,6 @@
     "require": {
         "php": ">=7.1"
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/z1px/tool"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Z1px\\Tool\\": "src"
