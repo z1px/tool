@@ -19,5 +19,5 @@
             "Z1px\\Tool\\": "src"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
