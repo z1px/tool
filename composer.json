@@ -1,0 +1,28 @@
+{
+    "name": "z1px/tool",
+    "type": "library",
+    "description": "php tool",
+    "keywords": ["tool"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kevin",
+            "email": "936957321@qq.com",
+            "homepage": "https://github.com/z1px"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/z1px/tool"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Z1px\\Tool\\": "src"
+        }
+    }
+}
