@@ -12,12 +12,12 @@
         }
     ],
     "require": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "z1px/tool": "1.0.0"
     },
     "autoload": {
         "psr-4": {
             "Z1px\\Tool\\": "src"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
