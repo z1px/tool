@@ -1,0 +1,27 @@
+{
+    "name": "z1px/tool",
+    "type": "composer-plugin",
+    "description": "php tool",
+    "keywords": ["tool"],
+    "homepage": "https://github.com/z1px/tool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kevin",
+            "email": "936957321@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Z1px\\Tool\\": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
