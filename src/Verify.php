@@ -23,7 +23,7 @@ class Verify
      */
     public static function mobile($mobile)
     {
-        preg_match('/^1[0-9]{10}$/', $mobile, $matches);
+        preg_match('/^1[3456789][0-9]{9}/', $mobile, $matches);
         return empty($matches) ? false : true;
     }
 

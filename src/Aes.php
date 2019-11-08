@@ -23,8 +23,17 @@ class Aes
      * @param $secret_key
      * @return string
      */
-    public static function encode($data, $secret_key) {
-        return openssl_encrypt($data, 'AES-128-ECB', $secret_key, OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, '');
+    public static function encrypt($decrypted, $secret_key, $method='AES-256-CBC', $options=OPENSSL_RAW_DATA, $vi='') {
+        $secret_key = md5($secret_key);
+        switch ($method){
+            case 'AES-256-CBC':
+                if(empty($vi)){
+                    $vi = substr($secret_key, 0, 16);
+                }
+                break;
+        }
+        $encrypted = openssl_encrypt($decrypted, $method, $secret_key, $options, $vi);
+        return base64_encode($encrypted);
     }
 
     /**
@@ -33,8 +42,18 @@ class Aes
      * @param $secret_key
      * @return string
      */
-    public static function decode($data, $secret_key) {
-        return openssl_decrypt($data, 'AES-128-ECB', $secret_key, OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, '');
+    public static function decrypt($encrypted, $secret_key, $method='AES-256-CBC', $options=OPENSSL_RAW_DATA, $vi='') {
+        $secret_key = md5($secret_key);
+        switch ($method){
+            case 'AES-256-CBC':
+                if(empty($vi)){
+                    $vi = substr($secret_key, 0, 16);
+                }
+                break;
+        }
+        $encrypted = base64_decode($encrypted);
+        $decrypted = openssl_decrypt($encrypted, $method, $secret_key, $options, $vi);
+        return $decrypted;
     }
 
 }

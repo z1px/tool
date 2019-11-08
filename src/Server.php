@@ -19,7 +19,7 @@ class Server
      */
     public static function isMobile()
     {
-        if (($_SERVER['HTTP_VIA']) && stristr($_SERVER['HTTP_VIA'] ?? '', "wap")) {
+        if (($_SERVER['HTTP_VIA'] ?? '') && stristr($_SERVER['HTTP_VIA'] ?? '', "wap")) {
             return true;
         } elseif (($_SERVER['HTTP_ACCEPT'] ?? '') && strpos(strtoupper($_SERVER['HTTP_ACCEPT'] ?? ''), "VND.WAP.WML")) {
             return true;
