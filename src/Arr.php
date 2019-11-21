@@ -23,17 +23,10 @@ class Arr
         if(empty($data) || !is_array($data)){
             return $result;
         }
-        $current = reset($data);
-        if(empty($current) || !is_array($current)){
-            return $result;
-        }
-        $result = array_map(function ($value){
-            return [$value];
-        }, $current);
-
-        $cursor = next($data);
-        while ($cursor && is_array($cursor)){
-            $current = $result;
+        $cursor = reset($data);
+        while ($cursor){
+            is_array($cursor) || $cursor = [$cursor];
+            $current = $result ?: [[]];
             $result = [];
             foreach ($current as $value){
                 foreach ($cursor as $val){
