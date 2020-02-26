@@ -122,12 +122,14 @@ class Server
             }elseif(preg_match('/iPod/i', $user_agent)){
                 $model = 'iPod';
             }
+            $model .= "(" . ($os . ($version ? " {$version}" : '')) . ")";
         }elseif(preg_match('/Mac/i', $user_agent)) {
             preg_match('/Mac OS X\s([0-9_\.]+)/i', $user_agent, $matches);
             $platform = 'osx';
             $model = 'Mac';
-            $os = 'Mac OS X';
+            $os = 'OS X';
             $version = str_replace('_','.', $matches[1] ?? '');
+            $model .= "(" . ($os . ($version ? " {$version}" : '')) . ")";
         }else {
             $platform = 'unknow';
             $model = 'unknow';
@@ -180,13 +182,13 @@ class Server
         $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknow'; // 获取用户代理字符串
         if(preg_match('/Firefox\/([^;)]+)+/i', $user_agent, $matches)) {
             $browser = 'Firefox';
-            $version = $matches[1] ?? '';  //获取火狐浏览器的版本号
+            $version = $matches[1] ?? '';
         }elseif(preg_match('/Maxthon\/([\d\.]+)/', $user_agent, $matches)) {
             $browser = '傲游';
             $version = $matches[1] ?? '';
         }elseif(preg_match('/MSIE\s+([^;)]+)+/i', $user_agent, $matches)) {
             $browser = 'IE';
-            $version = $matches[1] ?? '';  //获取IE的版本号
+            $version = $matches[1] ?? '';
         }elseif(preg_match('/OPR\/([\d\.]+)/', $user_agent, $matches)) {
             $browser = 'Opera';
             $version = $matches[1] ?? '';
@@ -196,10 +198,10 @@ class Server
             $version = $matches[1] ?? '';
         }elseif(preg_match('/Safari\/([\d\.]+)/', $user_agent, $matches)) {
             $browser = 'Safari';
-            $version = $matches[1] ?? '';  //获取google chrome的版本号
+            $version = $matches[1] ?? '';
         }elseif(preg_match('/Chrome\/([\d\.]+)/', $user_agent, $matches)) {
             $browser = 'Chrome';
-            $version = $matches[1] ?? '';  //获取google chrome的版本号
+            $version = $matches[1] ?? '';
         }elseif(preg_match('/rv:([\d\.]+)/', $user_agent, $matches)) {
             $browser = 'IE';
             $version = $matches[1] ?? '';
