@@ -103,14 +103,14 @@ class Request
         if(!function_exists('curl_init')){
             return [
                 'code' => 0,
-                'msg' => 'Do not support CURL function.',
+                'message' => 'Do not support CURL function.',
                 'data' => [],
             ];
         }
         if(!filter_var($url, FILTER_VALIDATE_URL)){
             return [
                 'code' => 0,
-                'msg' => self::$list_errno[3],
+                'message' => self::$list_errno[3],
                 'data' => [],
             ];
         }
@@ -223,13 +223,13 @@ class Request
         if (0 !== $errno) {
             return [
                 'code' => 0,
-                'msg'   => isset(self::$list_errno[$errno]) ? self::$list_errno[$errno] : $errno,
+                'message'   => isset(self::$list_errno[$errno]) ? self::$list_errno[$errno] : $errno,
                 'data'  => $response,
             ];
         }
 
         try {
-            $result = json_decode($response,true) ?: (200 === $http_code ? $response : ['code' => 0, 'msg' => "请求状态码为：{$http_code}", 'data' => $response]);
+            $result = json_decode($response,true) ?: (200 === $http_code ? $response : ['code' => 0, 'message' => "请求状态码为：{$http_code}", 'data' => $response]);
         } catch (\Exception $e) {
             $result = $response;
         }
@@ -352,7 +352,7 @@ class Request
         if(empty($filename)){
             return [
                 'code' => 0,
-                'msg' => '请传入下载文件名',
+                'message' => '请传入下载文件名',
                 'data' => [],
             ];
         }
@@ -378,7 +378,7 @@ class Request
 
         return [
             'code' => 1,
-            'msg' => '下载成功',
+            'message' => '下载成功',
             'data' => [
                 'filename' => $path.$filename,
                 'url' => "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['SERVER_NAME']}/{$path}{$filename}",
@@ -400,7 +400,7 @@ class Request
         if(!is_string($file) || !is_file($file)){
             return [
                 'code' => 0,
-                'msg' => '文件不存在',
+                'message' => '文件不存在',
                 'data' => [],
             ];
         }
@@ -429,7 +429,7 @@ class Request
         if(!is_array($files)){
             return [
                 'code' => 0,
-                'msg' => '文件不存在',
+                'message' => '文件不存在',
                 'data' => [],
             ];
         }
@@ -443,7 +443,7 @@ class Request
         if(empty($params)){
             return [
                 'code' => 0,
-                'msg' => '没有文件上传',
+                'message' => '没有文件上传',
                 'data' => [],
             ];
         }
@@ -470,7 +470,7 @@ class Request
         if(!isset($parts['host'])){
             return [
                 'code' => 0,
-                'msg' => self::$list_errno[3],
+                'message' => self::$list_errno[3],
                 'data' => [],
             ];
         }
@@ -494,15 +494,15 @@ class Request
         } catch (\Exception $e) {
             return [
                 'code' => 0,
-                'msg' => $e,
+                'message' => $e,
                 'data' => [],
             ];
         }
         if(empty($fp)){
             return [
                 'code' => 0,
-//                'msg' => 'Failed to open socket to localhost',
-                'msg' => "{$errstr} ({$errno})",
+//                'message' => 'Failed to open socket to localhost',
+                'message' => "{$errstr} ({$errno})",
                 'data' => []
             ];
         }
@@ -526,7 +526,7 @@ class Request
 
         return [
             'code' => 1,
-            'msg' => '数据已提交',
+            'message' => '数据已提交',
             'data' => []
         ];
     }
