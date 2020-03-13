@@ -136,7 +136,7 @@ class Format
      * @param string $charset
      * @return int
      */
-    public function strlen($str, $charset="utf-8")
+    public static function strlen($str, $charset="utf-8")
     {
         if(function_exists('mb_strlen')){
             return mb_strlen($str, $charset);
