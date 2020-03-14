@@ -169,7 +169,7 @@ class Request
         if(false !== stripos($url,'https://')){
             $setopt[CURLOPT_SSL_VERIFYPEER] = false; // 禁止curl验证证书
             $setopt[CURLOPT_SSL_VERIFYHOST] = false; // 禁止检测主机
-            $setopt[CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1_1; // CURL_SSLVERSION_TLSv1 CURL_SSLVERSION_TLSv1_1 CURL_SSLVERSION_TLSv1_2
+            $setopt[CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1_2; // CURL_SSLVERSION_TLSv1 CURL_SSLVERSION_TLSv1_1 CURL_SSLVERSION_TLSv1_2
         }
         $setopt[CURLOPT_URL] = $url; //抓取指定网页
         $setopt[CURLOPT_POST] = true; //是否POST提交方式
